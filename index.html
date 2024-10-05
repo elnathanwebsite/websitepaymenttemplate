@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayEase - Pembayaran Digital</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 20px;
+            color: #28a745;
+        }
+
+        #userList {
+            margin-top: 20px;
+        }
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2848a7;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00eeff;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 20px;
+            color: #ffffff;
+        }
+
+        #userList {
+            margin-top: 20px;
+        }
+        /* Custom Properties */
+        :root {
+            --primary-blue: #fdfdff;
+            --secondary-blue: #ffffff;
+            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animated Elements */
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .slide-in {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        /* Custom Card Styles */
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-blue);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Glass Morphism Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(2, 6, 63, 0.37);
+        }
+
+        /* Custom Button Styles */
+        .custom-button {
+            background: var(--gradient-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: all 0.6s;
+        }
+
+        .custom-button:hover::before {
+            left: 100%;
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            background: var(--gradient-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.1) 0px,
+                rgba(255, 255, 255, 0.1) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Custom Input Styling */
+        .custom-input {
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .custom-input:focus {
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 3px rgba(246, 59, 59, 0.699);
+        }
+
+        /* Service Card Hover Effects */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card img {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Navigation Menu Effects */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Footer Gradient */
+        .footer-gradient {
+            background: linear-gradient(to bottom, var(--primary-blue), #1e3a8a);
+        }
+
+        /* Responsive Design Improvements */
+        @media (max-width: 768px) {
+            .feature-card {
+                margin-bottom: 20px;
+            }
+
+            .hero-section {
+                padding: 60px 20px;
+            }
+        }
+        /* Kontainer untuk gambar dan judul */
+.text-center {
+    text-align: center;
+    margin: 20px 0; /* Jarak atas dan bawah */
+}
+
+/* Gaya untuk gambar */
+.text-center img {
+    width: 100%; /* Mengatur lebar gambar agar responsif */
+    max-width: 500px; /* Batas lebar maksimum gambar */
+    border-radius: 10px; /* Sudut melengkung pada gambar */
+    transition: transform 0.3s ease; /* Efek transisi untuk hover */
+}
+
+/* Efek hover pada gambar */
+.text-center img:hover {
+    transform: scale(1.05); /* Memperbesar gambar saat dihover */
+}
+
+/* Gaya untuk judul */
+.text-center h3 {
+    font-size: 1.5rem; /* Ukuran font judul */
+    margin-top: 10px; /* Jarak atas judul */
+}
+
+/* Gaya untuk tautan judul */
+.text-center h3 a {
+    text-decoration: none; /* Menghilangkan garis bawah */
+    color: #333; /* Warna teks */
+    transition: color 0.3s ease; /* Efek transisi untuk hover */
+}
+
+/* Efek hover pada tautan judul */
+.text-center h3 a:hover {
+    color: #007bff; /* Warna saat dihover */
+}
+
+    </style>
+</head>
+<div class="container">
+    <h1>Sign Up</h1>
+    <form id="signupForm">
+        <input type="text" id="signupName" placeholder="Nama Lengkap" required>
+        <input type="email" id="signupEmail" placeholder="Email" required>
+        <input type="password" id="signupPassword" placeholder="Kata Sandi" required>
+        <button type="submit">Daftar</button>
+    </form>
+
+    <h1>Login</h1>
+    <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Kata Sandi" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <div id="message"></div>
+
+    <h2>Pengguna Terdaftar:</h2>
+    <ul id="userList"></ul>
+</div>
+<body class="bg-gray-50">
+    <!-- Navbar dengan efek glass morphism -->
+    <nav class="glass-effect fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-800 pulse-animation">PayEase</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="login dan sigup.html" class="nav-link text-gray-600 hover:text-blue-800">Login</a>
+                    <a href="login dan sigup.html" class="nav-link text-gray-600 hover:text-blue-800">Daftar akun</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section dengan animasi -->
+    <div class="hero-section py-32">
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <h1 class="text-5xl font-bold mb-6 text-white slide-in">Pembayaran Digital Terpercaya</h1>
+            <p class="text-xl mb-8 text-blue-100 slide-in" style="animation-delay: 0.2s">Solusi pembayaran digital yang aman, cepat, dan mudah untuk semua kebutuhan Anda</p>
+            
+        </div>
+    </div>
+
+    <!-- Fitur Utama dengan cards yang menarik -->
+    <div class="max-w-7xl mx-auto px-4 py-20">
+        <h2 class="text-3xl font-bold text-center mb-16 text-gray-800 slide-in">Fitur Unggulan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="feature-card p-8">
+                <div class="text-blue-800 text-5xl mb-6 float-animation">💳</div>
+                <h3 class="text-xl font-bold mb-4">Transfer Instan</h3>
+                <p class="text-gray-600">Transfer uang secara instan ke seluruh bank di Indonesia</p>
+            </div>
+            <div class="feature-card p-8" style="animation-delay: 0.2s">
+                <div class="text-blue-800 text-5xl mb-6 float-animation">🔒</div>
+                <h3 class="text-xl font-bold mb-4">Keamanan Terjamin</h3>
+                <p class="text-gray-600">Dilengkapi sistem keamanan berlapis dan enkripsi data</p>
+            </div>
+            <div class="feature-card p-8" style="animation-delay: 0.4s">
+                <div class="text-blue-800 text-5xl mb-6 float-animation">📱</div>
+                <h3 class="text-xl font-bold mb-4">Pembayaran QR</h3>
+                <p class="text-gray-600">Scan & bayar dengan mudah menggunakan kode QR</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layanan dengan hover effects -->
+    <div class="bg-gray-100 py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800">Layanan Kami</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="service-card bg-white p-6 rounded-xl text-center">
+                    <div class="text-center">
+                        <a href="TURNAMEN.html">
+                            <img src="https://i.ytimg.com/vi/RoQ4pBg3NRI/maxresdefault.jpg" alt="Pulsa" class="mx-auto mb-4 rounded-lg">
+                        </a>
+                        <h3 class="font-bold mb-2"><a href="TURNAMEN.html">Isi Pulsa</a></h3>
+                    </div>
+                    <div class="text-center">
+                        <a href="TOKEN LISTRIK.html">
+                            <img src="https://i.ytimg.com/vi/h03PgAfXEqw/maxresdefault.jpg" alt="Pulsa" class="mx-auto mb-4 rounded-lg">
+                        </a>
+                        <h3 class="font-bold mb-2"><a href="TOKEN LISTRIK.html">Token Listrik</a></h3>
+                    </div>
+                    <div class="text-center">
+                        <a href="https://bpjs-kesehatan.go.id/#:~:text=Data%20JKN.%20Jumlah%20Peserta%20JKN:">
+                            <img src="https://1.bp.blogspot.com/-H5EBjp029gg/X2Lr6VE36HI/AAAAAAAAHJI/IVJFI4iNJFs5YE20Pu9ERbVRdYUmHIjjACLcBGAsYHQ/s1800/logo%2Bbpjs-02.png" alt="Pulsa" class="mx-auto mb-4 rounded-lg">
+                        </a>
+                        <h3 class="font-bold mb-2"><a href="https://bpjs-kesehatan.go.id/#:~:text=Data%20JKN.%20Jumlah%20Peserta%20JKN:">BPJS KESEHATAN</a></h3>
+                    </div>
+                    <div class="text-center">
+                        <a href="https://elnathanshopinstagram.vercel.app/">
+                            <img src="https://i.pinimg.com/736x/da/a2/96/daa29663541348a27319f0e60e4ab205.jpg" alt="Pulsa" class="mx-auto mb-4 rounded-lg">
+                        </a>
+                        <h3 class="font-bold mb-2"><a href="https://elnathanshopinstagram.vercel.app/">MY STAND</a></h3>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer dengan gradient -->
+    <footer class="footer-gradient text-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <h4 class="text-2xl font-bold mb-6">ELNATHAN PayEase</h4>
+                    <p class="text-blue-200">Solusi pembayaran digital terpercaya untuk semua kebutuhan Anda</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Layanan</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://bri.co.id/brimo/#:~:text=BRImo%20merupakan%20financial%20super%20app" class="text-blue-200 hover:text-white transition-colors">BRIMO</a></li>
+                        <li><a href="https://www.codashop.com/id-id" class="text-blue-200 hover:text-white transition-colors">Codashop</a></li>
+                        <li><a href="#\https://www.bca.co.id/id/Individu/layanan/e-banking/BCA-Mobile/Buat-Rekening#:~:text=Nikmati%20kemudahan%20dalam%20membuat%20rekening" class="text-blue-200 hover:text-white transition-colors">Buat Rekening BCA</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Perusahaan</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://profilelnathaners-co-id-com.vercel.app/" class="text-blue-200 hover:text-white transition-colors">Tentang Kami</a></li>
+                        <li><a href="https://fortofolioelnathanpertama.vercel.app/" class="text-blue-200 hover:text-white transition-colors">Karir</a></li>
+                        <li><a href="https://berandawebsiteelnathannew.vercel.app/" class="text-blue-200 hover:text-white transition-colors">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Ikuti Kami</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-blue-200 hover:text-white transition-colors">Instagram
+                            <a href="https://www.instagram.com/elnathaners/profilecard/?igsh=bW5kNHVrbWw3anZs" class="social-icon-link">
+                                <div class="w-10 h-10 rounded-full bg-blue-700 hover:bg-blue-600 flex items-center justify-center transition-all duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+    
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-blue-700 mt-12 pt-8 text-center">
+                    
+                </div>
+            </div>
+        </footer>
+    
+        <!-- Script untuk smooth scroll dan animasi tambahan -->
+        <script>
+              // Fungsi untuk memuat pengguna terdaftar dari LocalStorage
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+            users.forEach(user => {
+                let li = document.createElement('li');
+                li.textContent = `${user.name} - ${user.email}`;
+                userList.appendChild(li);
+            });
+        }
+
+        // Fungsi untuk menambahkan pengguna baru (Sign Up)
+        function addUser(name, email, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            // Cek apakah email sudah terdaftar
+            const userExists = users.some(user => user.email === email);
+
+            if (userExists) {
+                document.getElementById('message').textContent = 'Email sudah terdaftar!';
+            } else {
+                users.push({ name, email, password });
+                localStorage.setItem('users', JSON.stringify(users));
+                document.getElementById('message').textContent = 'Pendaftaran berhasil!';
+                loadUsers();
+            }
+        }
+
+        // Fungsi untuk melakukan login
+        function loginUser(email, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                document.getElementById('message').textContent = `Login berhasil! Selamat datang, ${user.name}.`;
+                // Arahkan ke halaman lain setelah login berhasil
+                window.location.href = ''; // Ganti dengan URL halaman yang diinginkan
+            } else {
+                document.getElementById('message').textContent = 'Email atau kata sandi tidak terdaftar. Silakan daftar terlebih dahulu.';
+            }
+        }
+
+        // Event listener untuk form pendaftaran (Sign Up)
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Menghindari reload halaman
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            addUser(name, email, password);
+
+            // Reset form pendaftaran
+            this.reset();
+        });
+
+        // Event listener untuk form login
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Menghindari reload halaman
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            loginUser(email, password);
+
+            // Reset form login
+            this.reset();
+        });
+
+        // Memuat pengguna terdaftar saat halaman dibuka
+        loadUsers();
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+    
+            // Animate elements on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+    
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('slide-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+    
+            document.querySelectorAll('.feature-card, .service-card').forEach(el => {
+                observer.observe(el);
+            });
+    
+            // Add loading effect to buttons
+            document.querySelectorAll('.custom-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.add('loading-button');
+                    setTimeout(() => {
+                        this.classList.remove('loading-button');
+                    }, 2000);
+                });
+            });
+        </script>
+    </body>
+    </html>

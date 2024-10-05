@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pembelian Token Listrik</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #form-pembelian {
+      width: 50%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #form-pembelian label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #form-pembelian input, #form-pembelian select {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    #tombol-beli {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #tombol-beli:hover {
+      background-color: #3e8e41;
+    }
+
+    #metode-pembayaran {
+      margin-top: 20px;
+    }
+
+    #metode-pembayaran label {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pembelian Token Listrik</h1>
+  <form id="form-pembelian">
+    <label>Nomer Token:</label>
+    <input type="text" id="nomer-token" required>
+    <br>
+    <label>Jumlah Token:</label>
+    <select id="jumlah-token" required>
+      <option value="10">10 Token</option>
+      <option value="20">20 Token</option>
+      <option value="50">50 Token</option>
+      <option value="100">100 Token</option>
+    </select>
+    <br>
+    <label>Harga Token:</label>
+    <span id="harga-token"></span>
+    <br>
+    <div id="metode-pembayaran">
+      <label>Metode Pembayaran:</label>
+      <input type="radio" id="transfer-bank" name="metode-pembayaran" value="transfer-bank">
+      <label for="transfer-bank">Transfer Bank</label>
+      <br>
+      <input type="radio" id="kartu-kredit" name="metode-pembayaran" value="kartu-kredit">
+      <label for="kartu-kredit">Kartu Kredit</label>
+      <br>
+      <input type="radio" id="e-wallet" name="metode-pembayaran" value="e-wallet">
+      <label for="e-wallet">E-Wallet</label>
+    </div>
+    <button id="tombol-beli">Beli</button>
+  </form>
+
+  <script>
+    const formPembelian = document.getElementById('form-pembelian');
+    const nomerToken = document.getElementById('nomer-token');
+    const jumlahToken = document.getElementById('jumlah-token');
+    const hargaToken = document.getElementById('harga-token');
+    const tombolBeli = document.getElementById('tombol-beli');
+    const metodePembayaran = document.getElementsByName('metode-pembayaran');
+
+    // harga token per unit
+    const hargaTokenPerUnit = 1000;
+
+    // fungsi untuk menghitung harga token
+    function hitungHargaToken() {
+      const jumlahTokenValue = parseInt(jumlahToken.value);
+      const hargaTokenValue = jumlahTokenValue * hargaTokenPerUnit;
+      hargaToken.innerText = `Rp ${hargaTokenValue.toLocaleString('id-ID')}`;
+    }
+
+    // event listener untuk menghitung harga token ketika jumlah token berubah
+    jumlahToken.addEventListener('change', hitungHargaToken);
+
+    // event listener untuk melakukan pembelian ketika tombol beli diklik
+    tombolBeli.addEventListener('click', (e) => {
+      e.preventDefault();
+      const metodePembayaranValue = Array.from(metodePembayaran).find((radio) => radio.checked).value;
+
+      // Fungsi 1: Mengirimkan email ke developer
+      const emailDeveloper = 'developer@example.com';
+      const subject = 'Pembelian Token Listrik';
+      const body = `Nomer Token: ${nomerToken.value}\nJumlah Token: ${jumlahToken.value}\nMetode Pembayaran: ${metodePembayaranValue}`;
+      const mailToLink = `mailto:${emailDeveloper}?subject=${subject}&body=${body}`;
+
+      // Fungsi 2: Membuat link untuk mengunduh nota pembayaran
+      const links = [
+        { name: 'Nota Pembayaran', url: 'https://example.com/unduh-nota-pembayaran' },
+        { name: 'Kwitansi Pembayaran', url: 'https://example.com/unduh-kwitansi-pembayaran' },
+        { name: 'Bukti Pembayaran', url: 'https://example.com/unduh-bukti-pembayaran' },
+        { name: 'Laporan Pembayaran', url: 'https://example.com/unduh-laporan-pembayaran' },
+      ];
+  // Create a new HTML element to display the nota
+  const notaElement = document.createElement('div');
+  notaElement.innerHTML = `
+    <h2>Nota Pembayaran</h2>
+    <p>Nomer Token: ${nomerToken.value}</p>
+    <p>Jumlah Token: ${jumlahToken.value}</p>
+    <p>Metode Pembayaran: ${metodePembayaranValue}</p>
+    <ul>
+      ${links.map((link) => `<li><a href="${link.url}?nomer-token=${nomerToken.value}&jumlah-token=${jumlahToken.value}&metode-pembayaran=${metodePembayaranValue}" target="_blank">${link.name}</a></li>`).join('')}
+    </ul>
+  `;
+
+  // Append the nota element to the page
+  document.body.appendChild(notaElement);
+
+      links.forEach((link) => {
+        const linkUrl = `${link.url}?nomer-token=${nomerToken.value}&jumlah-token=${jumlahToken.value}&metode-pembayaran=${metodePembayaranValue}`;
+        console.log(linkUrl);
+      });
+    });
+    
+  </script>
+</body>
+</html>
